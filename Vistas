@@ -8,3 +8,4 @@ CREATE
         `actores`
     WHERE
         (`actores`.`edad` >= 35)
+
