@@ -1,0 +1,10 @@
+CREATE 
+   VIEW `vista_edad_actor` AS
+    SELECT 
+        `actores`.`nombre` AS `nombre`,
+        `actores`.`apellido` AS `apellido`,
+        `actores`.`edad` AS `edad`
+    FROM
+        `actores`
+    WHERE
+        (`actores`.`edad` >= 35)
