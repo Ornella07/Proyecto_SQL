@@ -1,5 +1,4 @@
-CREATE 
-   VIEW `vista_edad_actor` AS
+CREATE  VIEW `vista_edad_actor` AS
     SELECT 
         `actores`.`nombre` AS `nombre`,
         `actores`.`apellido` AS `apellido`,
@@ -7,5 +6,33 @@ CREATE
     FROM
         `actores`
     WHERE
-        (`actores`.`edad` >= 35)
+        (`actores`.`edad` >= 35);
 
+
+
+CREATE VIEW `vistadetallespeliculas` AS
+    SELECT 
+        `p`.`id_pelicula` AS `id_pelicula`,
+        `p`.`nombre` AS `nombre`,
+        `a`.`nombre` AS `NombreActor`
+    FROM
+        ((`pelicula` `p`
+        JOIN `actua_pelicula` `pa` ON ((`p`.`id_pelicula` = `pa`.`id_pelicula`)))
+        JOIN `actores` `a` ON ((`pa`.`id_actor` = `a`.`id_actor`)));
+
+
+CREATE VIEW `vista_outlander` AS
+    SELECT 
+        `serie`.`id_serie` AS `id_serie`,
+        `serie`.`nombre` AS `nombre`,
+        `serie`.`descripcion` AS `descripcion`,
+        `serie`.`genero` AS `genero`,
+        `serie`.`idioma` AS `idioma`,
+        `serie`.`episodios` AS `episodios`,
+        `serie`.`id_actor` AS `id_actor`,
+        `serie`.`id_productor` AS `id_productor`,
+        `serie`.`id_director` AS `id_director`
+    FROM
+        `serie`
+    WHERE
+        (`serie`.`nombre` = 'outlander');
