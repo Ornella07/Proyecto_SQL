@@ -1,0 +1,13 @@
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `vistadetallespeliculas` AS
+    SELECT 
+        `p`.`id_pelicula` AS `id_pelicula`,
+        `p`.`nombre` AS `nombre`,
+        `a`.`nombre` AS `NombreActor`
+    FROM
+        ((`pelicula` `p`
+        JOIN `actua_pelicula` `pa` ON ((`p`.`id_pelicula` = `pa`.`id_pelicula`)))
+        JOIN `actores` `a` ON ((`pa`.`id_actor` = `a`.`id_actor`)))
