@@ -1,0 +1,16 @@
+CREATE 
+VIEW `vista_outlander` AS
+    SELECT 
+        `serie`.`id_serie` AS `id_serie`,
+        `serie`.`nombre` AS `nombre`,
+        `serie`.`descripcion` AS `descripcion`,
+        `serie`.`genero` AS `genero`,
+        `serie`.`idioma` AS `idioma`,
+        `serie`.`episodios` AS `episodios`,
+        `serie`.`id_actor` AS `id_actor`,
+        `serie`.`id_productor` AS `id_productor`,
+        `serie`.`id_director` AS `id_director`
+    FROM
+        `serie`
+    WHERE
+        (`serie`.`nombre` = 'outlander')
