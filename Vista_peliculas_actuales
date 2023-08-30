@@ -1,7 +1,5 @@
 CREATE 
-    ALGORITHM = UNDEFINED 
-    DEFINER = `root`@`localhost` 
-    SQL SECURITY DEFINER
+   
 VIEW `vistadetallespeliculas` AS
     SELECT 
         `p`.`id_pelicula` AS `id_pelicula`,
