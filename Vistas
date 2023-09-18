@@ -1,38 +1,31 @@
-CREATE  VIEW `vista_edad_actor` AS
-    SELECT 
-        `actores`.`nombre` AS `nombre`,
-        `actores`.`apellido` AS `apellido`,
-        `actores`.`edad` AS `edad`
-    FROM
-        `actores`
-    WHERE
-        (`actores`.`edad` >= 35);
+## -- CREO VISTAS -- ##
+##Películas en las que trabajó un actor específico
+CREATE VIEW Vista_PeliculasDeActor AS
+SELECT
+    a.nombre AS Nombre_Actor,
+    p.nombre  AS Pelicula_Trabajada
+FROM actores a
+INNER JOIN actua_peliculas ap ON a.id_actor = ap.id_actor
+INNER JOIN pelicula p ON ap.id_pelicula = p.id_pelicula;
 
 
+##Actores que trabajaron en una serie en particular
+CREATE VIEW Vista_ActoresEnSerie AS
+SELECT
+    s.nombre AS serie,
+    a.nombre AS Nombre_Actor
+FROM serie s
+INNER JOIN actua_series asr ON s.id_serie = asr.id_serie
+INNER JOIN actores a ON asr.id_actor = a.id_actor;
 
-CREATE VIEW `vistadetallespeliculas` AS
-    SELECT 
-        `p`.`id_pelicula` AS `id_pelicula`,
-        `p`.`nombre` AS `nombre`,
-        `a`.`nombre` AS `NombreActor`
-    FROM
-        ((`pelicula` `p`
-        JOIN `actua_pelicula` `pa` ON ((`p`.`id_pelicula` = `pa`.`id_pelicula`)))
-        JOIN `actores` `a` ON ((`pa`.`id_actor` = `a`.`id_actor`)));
+SELECT * FROM Vista_ActoresEnSerie;
 
 
-CREATE VIEW `vista_outlander` AS
-    SELECT 
-        `serie`.`id_serie` AS `id_serie`,
-        `serie`.`nombre` AS `nombre`,
-        `serie`.`descripcion` AS `descripcion`,
-        `serie`.`genero` AS `genero`,
-        `serie`.`idioma` AS `idioma`,
-        `serie`.`episodios` AS `episodios`,
-        `serie`.`id_actor` AS `id_actor`,
-        `serie`.`id_productor` AS `id_productor`,
-        `serie`.`id_director` AS `id_director`
-    FROM
-        `serie`
-    WHERE
-        (`serie`.`nombre` = 'outlander');
+## Listado de actores que trabajaron en alguna serie 
+CREATE VIEW Vista_ActoresEnAlgunaSerie AS
+SELECT DISTINCT
+    a.nombre AS Nombre_Actor,
+    a.apellido AS Apellido_Actor
+FROM actores a
+INNER JOIN actua_series asr ON a.id_actor = asr.id_actor;
+SELECT * FROM Vista_ActoresEnAlgunaSerie;
